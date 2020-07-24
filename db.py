@@ -1,7 +1,8 @@
 from pymongo import MongoClient
 import os
 
-client = MongoClient("mongodb://localhost:27017")
+uri = os.environ.get('MONGODB_URI', 'mongodb://localhost')
+client = MongoClient(uri)
 db = client.database
 favourites = db.favourites
 
