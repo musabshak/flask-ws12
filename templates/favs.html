@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  {% include 'partials/head.html' %}
+</head>
+
+<body>
+  {% include 'partials/nav.html' %}
+  <h1>Welcome to your favourites</h1>
+  <div class="shelf">
+    {% for book in all %}
+    <div class="book">
+      <div class="options">
+        <p data-id="{{book.id}}" class="delete"><i class="material-icons">delete</i></p>
+      </div>
+      <img src={{ book.volumeInfo.imageLinks.thumbnail }}>
+    </div>
+    {% endfor %}
+  </div>
+  <script>
+    $('.delete').click(function(event) {
+      var id=$(event.currentTarget).data('id');
+        $.ajax({
+            type: "DELETE",
+            url: "/delete/"+id,
+        }).done(function() {location.reload()});
+    });
+</script>
+</body>
+
+</html>

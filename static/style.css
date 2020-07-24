@@ -1,0 +1,27 @@
+body {
+  background-color: rgb(26, 19, 0);
+  color: rgb(255, 255, 255);
+  margin: 0 10px;
+}
+nav, button {
+  background-color: rgb(105, 6, 13);
+  border-width: 0;
+  border-radius: 8px;
+  padding: 7px;
+}
+h1 {
+  font-size: 25px;
+}
+i {
+  cursor: pointer;
+}
+.shelf {
+  display: flex;
+  flex-flow: row wrap;
+}
+.book {
+  padding: 15px;
+}
+.options {
+  display: flex;
+}

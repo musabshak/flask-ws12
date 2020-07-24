@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+{% include 'partials/head.html' %}
+
+<body>
+  {% include 'partials/nav.html' %}
+  <h1>Hot Cocoa</h1>
+  <div>
+    <form action="/" method="POST">
+      <input type="text" name="search-bar" placeholder="book title">
+      <button type="submit">Search</button>
+    </form>
+  </div>
+  </div>
+  <div class="shelf">
+    {% for book in results %}
+    {% if 'imageLinks' in book.volumeInfo %}
+    <div class="book">
+      <div class="options">
+        <p data-id="{{book.id}}" class="delete"><i class="material-icons">delete</i></p>
+        <p data-id="{{book.id}}" class="add"><i class="material-icons">add_circle</i></p>
+      </div>
+      <img src={{ book.volumeInfo.imageLinks.thumbnail }}>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+  <script>
+    $('.add').click(function(event) {
+      var id=$(event.currentTarget).data('id');
+        $.ajax({
+            type: "POST",
+            url: "/add/"+id,
+        }).done(function() {location.reload()});
+    });
+    $('.delete').click(function(event) {
+      var id=$(event.currentTarget).data('id');
+        $.ajax({
+            type: "DELETE",
+            url: "/delete/"+id,
+        }).done(function() {location.reload()});
+    });
+ </script>
+</body>
+
+</html>
